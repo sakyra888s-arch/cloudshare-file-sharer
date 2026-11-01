@@ -1,4 +1,4 @@
-const CACHE_NAME = 'filesharer-cache-v1';
+const CACHE_NAME = 'filesharer-cache-v3';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -19,23 +19,6 @@ self.addEventListener('install', function(event) {
     );
 });
 
-self.addEventListener('fetch', function(event) {
-    // ПРОПУСКАЕМ СКАЧИВАНИЕ ФАЙЛОВ ЧЕРЕЗ КЭШ
-    if (event.request.url.includes('download.php')) {
-        return; // Браузер скачает файл напрямую, без участия Service Worker
-    }
-
-    event.respondWith(
-        caches.match(event.request)
-            .then(function(response) {
-                if (response) {
-                    return response; 
-                }
-                return fetch(event.request);
-            })
-    );
-});
-
 self.addEventListener('activate', function(event) {
     event.waitUntil(
         caches.keys().then(function(cacheNames) {
@@ -46,6 +29,27 @@ self.addEventListener('activate', function(event) {
                     }
                 })
             );
-        })
+        }).then(() => self.clients.claim())
+    );
+});
+
+self.addEventListener('fetch', function(event) {
+    if (event.request.url.includes('download.php')) {
+        return; 
+    }
+
+    event.respondWith(
+        caches.match(event.request)
+            .then(function(response) {
+                if (response) {
+                    return response; 
+                }
+                return fetch(event.request);
+            })
+            .catch(function() {
+                if (event.request.mode === 'navigate') {
+                    return caches.match('/index.html');
+                }
+            })
     );
 });
