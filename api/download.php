@@ -24,9 +24,12 @@ if ($file) {
             exit;
         }
 
+        // Исправление кодировки для русских букв
+        $encodedName = rawurlencode($file['original_name']);
+        
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="' . basename($file['original_name']) . '"');
+        header('Content-Disposition: attachment; filename*=UTF-8\'\'' . $encodedName);
         header('Expires: 0');
         header('Pragma: public');
         header('Content-Length: ' . filesize($filepath));

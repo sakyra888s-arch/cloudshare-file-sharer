@@ -20,6 +20,11 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
+    // ПРОПУСКАЕМ СКАЧИВАНИЕ ФАЙЛОВ ЧЕРЕЗ КЭШ
+    if (event.request.url.includes('download.php')) {
+        return; // Браузер скачает файл напрямую, без участия Service Worker
+    }
+
     event.respondWith(
         caches.match(event.request)
             .then(function(response) {
