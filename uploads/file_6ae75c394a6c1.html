@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Моя страница</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <!-- Шапочка-->
+      <h1 id="title">Сумайя</h1>
+      <nav>
+        <a href="#">Главная</a>
+        <a href="#">Дашборд</a>
+        <a href="#">Вопросы</a>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <h2>Привет</h2>
+        <p>Моя первая страница</p>
+        <button>Нажми</button>
+      </section>
+      <h2>Мои любимки</h2>
+      <p>Ягоды</p>
+      <select class="berry">
+        <option>Крубника</option>
+        <option>Банан</option>
+        <option>Малина</option>
+      </select><br>
+      <button>Нажми на меня</button><br>
+      <!-- Стилизация блоков-->
+      <section class="cards">
+        <div class="card">
+          <h3>Первый блок</h3>
+          <p>Его описание</p>
+        </div>
+        
+        <div class="card">
+          <h3>Второй блок</h3>
+          <p>Его описание</p>
+        </div>
+
+        <div class="card">
+          <h3>Третий блок</h3>
+          <p>Его описание</p>
+        </div>
+      </section>
+      <!-- Форма с контактами-->
+      <section class="contacts">
+      <form>
+        <h3>Контактные данные</h3> <!--Я вот не понимаю как в теге ввода задавать класс. -->
+        <label for="name">Ваше имя:</label>
+        <input type="text" id="name" name="name" placeholder="Имя" required><br>
+        <label for="email">Ваш email:</label>
+        <input type="email" id="email" name="email" placeholder="Ваша почта" required><br>
+        <label for="age">Ваш возраст:</label>
+        <input type="number" id="age" name="age" placeholder="Возраст" required><br>
+        <input type="submit" value="Отправить">
+      </form>
+      </section>
+    </main>
+    <footer>
+    <p>&copy; Сумайя, 2026</p>
+    </footer>
+  </body>
+</html>
+

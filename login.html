@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Вход - CloudShare</title>
+    <style>
+        .error-message {
+            display: none;
+            background-color: #ffe6e6;
+            color: #d8000c;
+            border: 1px solid #d8000c;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .auth-input {
+            width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ccc; font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo">CloudShare</div>
+    </header>
+    <main>
+        <div class="container">
+            <h1>Вход в систему</h1>
+            <form id="loginForm">
+                <label for="logUser">Логин:</label>
+                <input type="text" id="logUser" class="auth-input" required>
+                
+                <label for="logPass">Пароль:</label>
+                <input type="password" id="logPass" class="auth-input" required>
+                
+                <button type="submit">Войти</button>
+            </form>
+            <p style="text-align: center; margin-top: 15px;">
+                Еще не зарегистрированы? <a href="register.html" style="color: #2b2d42; font-weight: bold;">Регистрация</a>
+            </p>
+            <div id="logError" class="error-message"></div>
+        </div>
+    </main>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('logUser').value;
+            const password = document.getElementById('logPass').value;
+            const errorDiv = document.getElementById('logError');
+
+            fetch('api/login.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    window.location.href = 'index.html'; 
+                } else {
+                    errorDiv.textContent = data.message;
+                    errorDiv.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

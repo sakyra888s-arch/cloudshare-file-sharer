@@ -1,0 +1,178 @@
+/*нужно снести настройки от браузера, чтобы потом всё самим настроить*/
+* { 
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*========== ШАПКА ===========*/
+header{ 
+    background: #222; 
+    color:#fff;
+    padding: 20px; /*отступы для шапки(от верха к низу расстоние 20px*/
+    display: flex;
+    justify-content: space-between; /*расположение заголовка и других частей шапки относительно друг друга)*/
+    align-items: center;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #000000;
+    background: #f5f5f5;
+    line-height: 1.8; /*промежуточный интервал*/
+}
+
+/*настройка ссылок в шапке*/
+nav a { 
+    color:#fff;
+    text-decoration: none; /*без подчёркивания ссылки*/
+    margin-left: 20px; /*отступ между ссылками*/
+    transition: color 0.2s; /*плавная смена цвета*/
+    font-size: 18px;
+}
+
+nav a:hover { /*изменение цвета при наведении*/
+    color: #ffcc00;
+}
+
+nav a:active{ /*цвет при нажатии*/
+    color: aqua;
+}
+/*========== ШАПКА ===========*/
+
+/*========== ГЛАВНОЕ(ведёт к контактам) ===========*/
+.hero {
+    background: linear-gradient(135deg, #667eea, #764ba2); /*градиентный фон*/
+    color: white;
+    padding: 80px 20px; /*Отступ сбоку/снизу(сверху)*/
+    text-align: center;
+}
+
+button {
+    padding: 14px 32px; /*размеры кнопки*/
+    color: #764ba2;
+    background: #f5f5f5;
+    font-size: 18px; /*размер текста*/
+    border: none; /*убираем рамку от кнопки*/
+    border-radius: 8px; /*закругление углов*/
+    cursor: pointer; /*курсор-рука*/
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: translateY(-3px); /*для движения кнопки*/
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2); /*для тени при наведении на кнопку*/
+}
+/*========== ГЛАВНОЕ(ведёт к контактам) ===========*/
+
+/*========== BLOCKS ===========*/
+/*настройка блоков*/
+.cards {
+    display: grid; /*сетка*/
+    grid-template-columns: repeat(3, 1fr); /*три равные колонки в ряд можно и по вертикали и по горизонтали*/
+    gap: 40px; /*отступы между блоками*/
+    padding: 60px 40px;
+    margin: 0 auto;
+    max-width: 2000px;
+}
+
+.card {
+    background: rgb(250, 250, 250);
+    padding: 30px; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2); 
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 10px; /*закругление углов*/
+    cursor: pointer; /*курсор-рука*/
+}
+.card:hover {
+    transform: translateY(-5px); /*для движения кнопки*/
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2); /*для тени при наведении на кнопку*/
+}
+.card h3 {
+    margin-bottom: 15px;
+    color: #764ba2;
+    text-align: center;
+    font-size: 24px;
+}
+.card p{
+    color:aqua;
+    text-align: center;
+    font-size: 16px;
+}
+/*========== BLOCKS ===========*/
+
+/*========== FORM ===========*/
+.contacts {
+    display: flex; /*отвечает за центрирование*/
+    background-color: #fff;
+    justify-content: center; /*отвечает за центрирование*/
+    padding: 60px 40px;
+}
+.contacts form{
+    width: 100%;
+    max-width: 500px; /*чтобы форма не растягивалась(буквально держит поле ввода под контролем!*/
+}
+
+.contacts h3 {
+    font-size: 24px;
+    margin-bottom: 25px;
+    color: #333;
+    text-align: center;
+}
+.contacts label {
+    color:#222;
+    display: flex;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+/*СТИЛИЗАЦИЯ ПОЛЕЙ ФОРМЫ*/
+.contacts input {
+    padding: 12px 15px; /*отступы идущие от текста*/
+    width: 100%;
+    border: 1px solid #ddd;
+    border-color: #667eea;
+    border-radius: 8px; /*закругление углов*/
+    margin-bottom: 20px;
+    font-family: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contacts input[type="submit"] {
+    color: #ffffff;
+    font-size: 18px;
+    background: #bc84ea;
+    font-weight: 500; /*размер текста*/
+    border: none; /*убираем рамку от кнопки*/
+    cursor: pointer; /*курсор-рука*/
+    border-radius: 8px; /*закругление углов*/
+    padding: 14px 32px; /*отступы идущие от текста*/
+}
+
+.contacts input[type="text"],
+.contacts input[type="email"],
+.contacts input[type="number"] {
+    color: #000000;
+    font-size: 18px;
+    background: #ffffff;
+    font-weight: 500; /*размер текста(жирность)*/
+    border-color: rgb(190, 188, 188); /*убираем рамку от кнопки*/
+    cursor: pointer; /*курсор-рука*/
+    border-radius: 8px; /*закругление углов*/
+    padding: 14px 32px; /*отступы идущие от текста*/
+}
+
+.contacts input[type="submit"]:hover {
+    background: #764ba2;
+    transform: translateY(-2px);
+}
+/*========== FORM ===========*/
+
+/*==========FOOTER===========*/
+footer {
+    color: #ffffff;
+    background-color: #000000;
+    text-align: center;
+    padding: 30px 20px;
+}
+/*==========FOOTER===========*/

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Регистрация - CloudShare</title>
+    <style>
+        .error-message {
+            display: none;
+            background-color: #ffe6e6;
+            color: #d8000c;
+            border: 1px solid #d8000c;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+            animation: shake 0.5s;
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+        .auth-input {
+            width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ccc; font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo">CloudShare</div>
+    </header>
+    <main>
+        <div class="container">
+            <h1>Регистрация</h1>
+            <form id="registerForm">
+                <label for="regUser">Логин:</label>
+                <input type="text" id="regUser" class="auth-input" required>
+                
+                <label for="regPass">Пароль:</label>
+                <input type="password" id="regPass" class="auth-input" required>
+                
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+            <p style="text-align: center; margin-top: 15px;">
+                Уже есть аккаунт? <a href="login.html" style="color: #2b2d42; font-weight: bold;">Войти</a>
+            </p>
+            <div id="regError" class="error-message"></div>
+        </div>
+    </main>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('regUser').value;
+            const password = document.getElementById('regPass').value;
+            const errorDiv = document.getElementById('regError');
+
+            fetch('api/register.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Успешная регистрация! Теперь войдите.');
+                    window.location.href = 'login.html'; 
+                } else {
+                    errorDiv.textContent = data.message;
+                    errorDiv.style.display = 'block'; 
+                    errorDiv.style.animation = 'none';
+                    errorDiv.offsetHeight; 
+                    errorDiv.style.animation = 'shake 0.5s'; 
+                }
+            });
+        });
+    </script>
+</body>
+</html>
