@@ -1,1 +1,1 @@
-# CloudShare - Файлообменник
+CloudShare - Файлообменник
